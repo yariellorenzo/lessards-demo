@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lessard's Barber Shop | Watertown, MA</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #0e0e0e;
+      color: #f0e6d3;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: #0e0e0e;
+      border-bottom: 1px solid #2a2a2a;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #c8a96e;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul a {
+      color: #f0e6d3;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: #c8a96e; }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 120px 20px;
+      background: linear-gradient(to bottom, #0e0e0e, #1a1208);
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #c8a96e;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #999;
+      letter-spacing: 2px;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 40px;
+      background: #c8a96e;
+      color: #0e0e0e;
+      text-decoration: none;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .btn:hover { background: #b8944f; }
+
+    /* SERVICES */
+    .services {
+      padding: 80px 60px;
+      text-align: center;
+    }
+
+    .services h2 {
+      font-size: 2rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #c8a96e;
+      margin-bottom: 10px;
+    }
+
+    .services .subtitle {
+      color: #666;
+      margin-bottom: 50px;
+      letter-spacing: 1px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      padding: 30px 20px;
+    }
+
+    .service-card h3 {
+      color: #c8a96e;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+
+    .service-card .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #f0e6d3;
+    }
+
+    .service-card p {
+      color: #666;
+      font-size: 0.85rem;
+      margin-top: 8px;
+    }
+
+    /* ABOUT */
+    .about {
+      background: #111;
+      padding: 80px 60px;
+      text-align: center;
+      border-top: 1px solid #2a2a2a;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .about h2 {
+      font-size: 2rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #c8a96e;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      max-width: 600px;
+      margin: 0 auto;
+      color: #999;
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 80px 60px;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 2rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #c8a96e;
+      margin-bottom: 10px;
+    }
+
+    .contact .subtitle {
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .contact-item h3 {
+      color: #c8a96e;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    .contact-item p {
+      color: #f0e6d3;
+      font-size: 1rem;
+    }
+
+    /* HOURS */
+    .hours {
+      background: #111;
+      padding: 60px;
+      text-align: center;
+      border-top: 1px solid #2a2a2a;
+    }
+
+    .hours h2 {
+      font-size: 2rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #c8a96e;
+      margin-bottom: 30px;
+    }
+
+    .hours-grid {
+      display: inline-grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 40px;
+      text-align: left;
+    }
+
+    .hours-grid span { color: #999; }
+    .hours-grid strong { color: #f0e6d3; }
+
+    /* FOOTER */
+    footer {
+      padding: 30px 60px;
+      text-align: center;
+      border-top: 1px solid #2a2a2a;
+      color: #444;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Lessard's</div>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#hours">Hours</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <h1>Lessard's Barber Shop</h1>
+    <p>Watertown, Massachusetts · Est. in the community</p>
+    <a href="tel:6177894199" class="btn">Call to Book · (617) 789-4199</a>
+  </section>
+
+  <section class="services" id="services">
+    <h2>Services</h2>
+    <p class="subtitle">Classic cuts. Clean fades. Every time.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Haircut</h3>
+        <div class="price">$25</div>
+        <p>Classic cut, styled to your preference</p>
+      </div>
+      <div class="service-card">
+        <h3>Fade</h3>
+        <div class="price">$30</div>
+        <p>Clean skin or taper fade</p>
+      </div>
+      <div class="service-card">
+        <h3>Beard Trim</h3>
+        <div class="price">$15</div>
+        <p>Shape and define your beard</p>
+      </div>
+      <div class="service-card">
+        <h3>Cut + Beard</h3>
+        <div class="price">$40</div>
+        <p>Full service — hair and beard</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <h2>About</h2>
+    <p>Lessard's Barber Shop has been serving the Watertown community for years. We believe in quality cuts, a welcoming atmosphere, and treating every customer right. Walk-ins welcome.</p>
+  </section>
+
+  <section class="hours" id="hours">
+    <h2>Hours</h2>
+    <div class="hours-grid">
+      <span>Monday – Friday</span><strong>9:00 AM – 7:00 PM</strong>
+      <span>Saturday</span><strong>9:00 AM – 5:00 PM</strong>
+      <span>Sunday</span><strong>Closed</strong>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Find Us</h2>
+    <p class="subtitle">Walk-ins welcome. Call ahead for availability.</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <h3>Phone</h3>
+        <p>(617) 789-4199</p>
+      </div>
+      <div class="contact-item">
+        <h3>Location</h3>
+        <p>Watertown, MA</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Lessard's Barber Shop · Watertown, MA
+  </footer>
+
+</body>
+</html>
