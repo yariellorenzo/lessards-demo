@@ -66,6 +66,8 @@
       gap: 30px;
     }
 
+    /* add gallery to nav */
+
     nav ul a {
       color: #f0e6d3;
       text-decoration: none;
@@ -384,6 +386,61 @@
       font-size: 1.1rem;
     }
 
+    /* GALLERY */
+    .gallery {
+      padding: 80px 60px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gallery h2 {
+      font-size: 2rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #c8a96e;
+      margin-bottom: 10px;
+    }
+
+    .gallery .subtitle {
+      color: #666;
+      margin-bottom: 50px;
+      letter-spacing: 2px;
+      font-size: 0.9rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid rgba(200, 169, 110, 0.2);
+      aspect-ratio: 1;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      filter: grayscale(20%);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+      filter: grayscale(0%);
+    }
+
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
     /* SCROLL FADE IN */
     .fade-in {
       opacity: 0;
@@ -424,6 +481,7 @@
     <div class="logo">Lessard's</div>
     <ul>
       <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#hours">Hours</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -466,6 +524,21 @@
         <div class="price">$40</div>
         <p>Full service — hair and beard</p>
       </div>
+    </div>
+  </section>
+
+  <div class="divider"><span>✦</span></div>
+
+  <section class="gallery fade-in" id="gallery">
+    <h2>Our Work</h2>
+    <p class="subtitle">Clean cuts. Every time.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&q=80" alt="Fade cut"/></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Classic cut"/></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&q=80" alt="Beard trim"/></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&q=80" alt="Taper fade"/></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600&q=80" alt="Barber at work"/></div>
+      <div class="gallery-item"><img src="https://images.unsplash.com/photo-1593702288056-f9454891c2eb?w=600&q=80" alt="Shop interior"/></div>
     </div>
   </section>
 
