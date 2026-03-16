@@ -9,8 +9,29 @@
 
     body {
       font-family: 'Georgia', serif;
-      background: #0e0e0e;
+      background: #0a0a0a;
       color: #f0e6d3;
+      overflow-x: hidden;
+    }
+
+    /* ANIMATED BACKGROUND */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at 20% 50%, rgba(200, 169, 110, 0.08) 0%, transparent 50%),
+                  radial-gradient(ellipse at 80% 20%, rgba(200, 169, 110, 0.05) 0%, transparent 40%);
+      animation: bgShift 12s ease-in-out infinite alternate;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes bgShift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(30px, 20px); }
     }
 
     /* NAV */
@@ -19,8 +40,9 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 60px;
-      background: #0e0e0e;
-      border-bottom: 1px solid #2a2a2a;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200, 169, 110, 0.2);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -29,7 +51,7 @@
     .logo {
       font-size: 1.4rem;
       font-weight: bold;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       color: #c8a96e;
       text-transform: uppercase;
     }
@@ -43,61 +65,122 @@
     nav ul a {
       color: #f0e6d3;
       text-decoration: none;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
       text-transform: uppercase;
       transition: color 0.2s;
     }
 
     nav ul a:hover { color: #c8a96e; }
 
+    /* SCISSORS ANIMATION */
+    .scissors-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .scissors {
+      font-size: 3rem;
+      animation: snip 1.5s ease-in-out infinite;
+      filter: drop-shadow(0 0 12px rgba(200, 169, 110, 0.6));
+      color: #c8a96e;
+    }
+
+    @keyframes snip {
+      0%, 100% { transform: rotate(-15deg) scale(1); }
+      25% { transform: rotate(15deg) scale(1.1); }
+      50% { transform: rotate(-20deg) scale(1); }
+      75% { transform: rotate(10deg) scale(1.05); }
+    }
+
     /* HERO */
     .hero {
       text-align: center;
-      padding: 120px 20px;
-      background: linear-gradient(to bottom, #0e0e0e, #1a1208);
-      border-bottom: 1px solid #2a2a2a;
+      padding: 40px 20px 100px;
+      position: relative;
+      z-index: 1;
     }
 
     .hero h1 {
       font-size: 3.5rem;
-      letter-spacing: 4px;
+      letter-spacing: 5px;
       text-transform: uppercase;
       color: #c8a96e;
       margin-bottom: 10px;
+      animation: fadeUp 0.8s ease forwards;
     }
 
     .hero p {
-      font-size: 1.1rem;
-      color: #999;
-      letter-spacing: 2px;
+      font-size: 1rem;
+      color: #888;
+      letter-spacing: 3px;
       margin-bottom: 40px;
+      animation: fadeUp 1s ease forwards;
     }
 
     .btn {
       display: inline-block;
       padding: 14px 40px;
       background: #c8a96e;
-      color: #0e0e0e;
+      color: #0a0a0a;
       text-decoration: none;
       font-weight: bold;
       letter-spacing: 2px;
       text-transform: uppercase;
-      font-size: 0.9rem;
-      transition: background 0.2s;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+      animation: fadeUp 1.2s ease forwards;
     }
 
-    .btn:hover { background: #b8944f; }
+    .btn:hover {
+      background: #b8944f;
+      box-shadow: 0 0 20px rgba(200, 169, 110, 0.4);
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* DIVIDER */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 60px;
+      margin: 20px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(200, 169, 110, 0.4), transparent);
+    }
+
+    .divider span {
+      color: #c8a96e;
+      font-size: 1.2rem;
+    }
 
     /* SERVICES */
     .services {
       padding: 80px 60px;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .services h2 {
       font-size: 2rem;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: #c8a96e;
       margin-bottom: 10px;
@@ -106,54 +189,85 @@
     .services .subtitle {
       color: #666;
       margin-bottom: 50px;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      font-size: 0.9rem;
     }
 
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
+      gap: 20px;
       max-width: 900px;
       margin: 0 auto;
     }
 
+    /* GLASS CARDS */
     .service-card {
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
-      padding: 30px 20px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(200, 169, 110, 0.2);
+      padding: 35px 20px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(200, 169, 110, 0.05), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .service-card:hover::before { left: 100%; }
+
+    .service-card:hover {
+      border-color: rgba(200, 169, 110, 0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(200, 169, 110, 0.15);
     }
 
     .service-card h3 {
       color: #c8a96e;
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-      letter-spacing: 1px;
+      margin-bottom: 12px;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     .service-card .price {
-      font-size: 1.5rem;
+      font-size: 2rem;
       font-weight: bold;
       color: #f0e6d3;
     }
 
     .service-card p {
       color: #666;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       margin-top: 8px;
+      letter-spacing: 0.5px;
     }
 
     /* ABOUT */
     .about {
-      background: #111;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(8px);
       padding: 80px 60px;
       text-align: center;
-      border-top: 1px solid #2a2a2a;
-      border-bottom: 1px solid #2a2a2a;
+      border-top: 1px solid rgba(200, 169, 110, 0.15);
+      border-bottom: 1px solid rgba(200, 169, 110, 0.15);
+      position: relative;
+      z-index: 1;
     }
 
     .about h2 {
       font-size: 2rem;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: #c8a96e;
       margin-bottom: 20px;
@@ -163,19 +277,56 @@
       max-width: 600px;
       margin: 0 auto;
       color: #999;
-      line-height: 1.8;
+      line-height: 1.9;
       font-size: 1rem;
     }
+
+    /* HOURS */
+    .hours {
+      padding: 80px 60px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hours h2 {
+      font-size: 2rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #c8a96e;
+      margin-bottom: 40px;
+    }
+
+    .hours-box {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(200, 169, 110, 0.2);
+      padding: 40px 60px;
+    }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 50px;
+      text-align: left;
+    }
+
+    .hours-grid span { color: #888; font-size: 0.9rem; letter-spacing: 1px; }
+    .hours-grid strong { color: #f0e6d3; font-size: 0.9rem; }
 
     /* CONTACT */
     .contact {
       padding: 80px 60px;
       text-align: center;
+      border-top: 1px solid rgba(200, 169, 110, 0.15);
+      position: relative;
+      z-index: 1;
     }
 
     .contact h2 {
       font-size: 2rem;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: #c8a96e;
       margin-bottom: 10px;
@@ -183,63 +334,74 @@
 
     .contact .subtitle {
       color: #666;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
     }
 
     .contact-info {
       display: flex;
       justify-content: center;
-      gap: 60px;
+      gap: 40px;
       flex-wrap: wrap;
     }
 
-    .contact-item h3 {
-      color: #c8a96e;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-size: 0.85rem;
-      margin-bottom: 8px;
+    .contact-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(200, 169, 110, 0.2);
+      padding: 30px 40px;
+      transition: all 0.3s;
     }
 
-    .contact-item p {
+    .contact-card:hover {
+      border-color: rgba(200, 169, 110, 0.5);
+      box-shadow: 0 8px 32px rgba(200, 169, 110, 0.1);
+    }
+
+    .contact-card h3 {
+      color: #c8a96e;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+
+    .contact-card p {
       color: #f0e6d3;
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
 
-    /* HOURS */
-    .hours {
-      background: #111;
-      padding: 60px;
-      text-align: center;
-      border-top: 1px solid #2a2a2a;
+    /* SCROLL FADE IN */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
-    .hours h2 {
-      font-size: 2rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #c8a96e;
-      margin-bottom: 30px;
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-
-    .hours-grid {
-      display: inline-grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px 40px;
-      text-align: left;
-    }
-
-    .hours-grid span { color: #999; }
-    .hours-grid strong { color: #f0e6d3; }
 
     /* FOOTER */
     footer {
       padding: 30px 60px;
       text-align: center;
-      border-top: 1px solid #2a2a2a;
-      color: #444;
+      border-top: 1px solid rgba(200, 169, 110, 0.1);
+      color: #333;
       font-size: 0.8rem;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 15px 20px; }
+      nav ul { gap: 15px; }
+      .hero h1 { font-size: 2rem; }
+      .services, .about, .hours, .contact { padding: 60px 20px; }
+      .hours-box { padding: 30px 20px; }
     }
   </style>
 </head>
@@ -255,13 +417,19 @@
     </ul>
   </nav>
 
+  <div class="scissors-container">
+    <div class="scissors">✂</div>
+  </div>
+
   <section class="hero">
     <h1>Lessard's Barber Shop</h1>
-    <p>Watertown, Massachusetts · Est. in the community</p>
+    <p>Watertown, Massachusetts · Classic Cuts Since Day One</p>
     <a href="tel:6177894199" class="btn">Call to Book · (617) 789-4199</a>
   </section>
 
-  <section class="services" id="services">
+  <div class="divider"><span>✦</span></div>
+
+  <section class="services fade-in" id="services">
     <h2>Services</h2>
     <p class="subtitle">Classic cuts. Clean fades. Every time.</p>
     <div class="services-grid">
@@ -288,31 +456,43 @@
     </div>
   </section>
 
-  <section class="about" id="about">
+  <div class="divider"><span>✦</span></div>
+
+  <section class="about fade-in" id="about">
     <h2>About</h2>
-    <p>Lessard's Barber Shop has been serving the Watertown community for years. We believe in quality cuts, a welcoming atmosphere, and treating every customer right. Walk-ins welcome.</p>
+    <p>Lessard's Barber Shop has been serving the Watertown community for years. We believe in quality cuts, a welcoming atmosphere, and treating every customer right. Walk-ins always welcome.</p>
   </section>
 
-  <section class="hours" id="hours">
+  <div class="divider"><span>✦</span></div>
+
+  <section class="hours fade-in" id="hours">
     <h2>Hours</h2>
-    <div class="hours-grid">
-      <span>Monday – Friday</span><strong>9:00 AM – 7:00 PM</strong>
-      <span>Saturday</span><strong>9:00 AM – 5:00 PM</strong>
-      <span>Sunday</span><strong>Closed</strong>
+    <div class="hours-box">
+      <div class="hours-grid">
+        <span>Monday – Friday</span><strong>9:00 AM – 7:00 PM</strong>
+        <span>Saturday</span><strong>9:00 AM – 5:00 PM</strong>
+        <span>Sunday</span><strong>Closed</strong>
+      </div>
     </div>
   </section>
 
-  <section class="contact" id="contact">
+  <div class="divider"><span>✦</span></div>
+
+  <section class="contact fade-in" id="contact">
     <h2>Find Us</h2>
     <p class="subtitle">Walk-ins welcome. Call ahead for availability.</p>
     <div class="contact-info">
-      <div class="contact-item">
+      <div class="contact-card">
         <h3>Phone</h3>
         <p>(617) 789-4199</p>
       </div>
-      <div class="contact-item">
+      <div class="contact-card">
         <h3>Location</h3>
         <p>Watertown, MA</p>
+      </div>
+      <div class="contact-card">
+        <h3>Walk-ins</h3>
+        <p>Always Welcome</p>
       </div>
     </div>
   </section>
@@ -320,6 +500,19 @@
   <footer>
     © 2026 Lessard's Barber Shop · Watertown, MA
   </footer>
+
+  <script>
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
